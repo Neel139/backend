@@ -51,6 +51,7 @@ CORS_ALLOW_HEADERS = [
 # Allow the origin from where you are sending the request
 CORS_ORIGIN_WHITELIST = [
     'https://iskcon-a4720.web.app',
+    'http://localhost:3000',
 ]
 # Application definition
 

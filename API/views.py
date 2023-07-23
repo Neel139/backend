@@ -1,5 +1,5 @@
 import json
-import environ
+#import environ
 import razorpay
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -7,10 +7,10 @@ from django.shortcuts import render
 from .models import Order
 from .serializers import OrderSerializer
 
-env = environ.Env()
+#env = environ.Env()
 # you have to create .env file in same folder where you are using environ.Env()
 # reading .env file which located in api folder
-environ.Env.read_env()
+#environ.Env.read_env()
 
 def index(request):
     return render(request,'index.html')
@@ -18,11 +18,14 @@ def index(request):
 @api_view(['POST'])
 def start_payment(request):
     # request.data is coming from frontend
+    #import pdb; pdb.set_trace()
+    
     amount = request.data['totalDonationAmount']
     name = request.data['name']
 
     # setup razorpay client this is the client to whome user is paying money that's you
-    client = razorpay.Client(auth=(env('PUBLIC_KEY'), env('SECRET_KEY')))
+    #client = razorpay.Client(auth=(env('SECRET_KEY'),env('PUBLIC_KEY')))
+    client = razorpay.Client(auth=("rzp_test_3ClRYHrFsi3i7j","PXI95E7Sh8PprQ2G0ACvFvDX"))
 
     # create razorpay order
     # the amount will come in 'paise' that means if we pass 50 amount will become
@@ -94,7 +97,8 @@ def handle_payment_success(request):
         'razorpay_signature': raz_signature
     }
 
-    client = razorpay.Client(auth=(env('PUBLIC_KEY'), env('SECRET_KEY')))
+    #client = razorpay.Client(auth=(env('SECRET_KEY'),env('PUBLIC_KEY')))
+    client = razorpay.Client(auth=("rzp_test_3ClRYHrFsi3i7j","PXI95E7Sh8PprQ2G0ACvFvDX"))
 
     # checking if the transaction is valid or not by passing above data dictionary in 
     # razorpay client if it is "valid" then check will return None
