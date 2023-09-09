@@ -1,11 +1,12 @@
 import json
-#import environ
+# import environ
 import razorpay
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render
 from .models import Order
 from .serializers import OrderSerializer
+from django.core.mail import send_mail
 
 #env = environ.Env()
 # you have to create .env file in same folder where you are using environ.Env()
@@ -114,6 +115,14 @@ def handle_payment_success(request):
 
     res_data = {
         'message': 'payment successfully received!'
-    }
+     }
+    # send_mail(
+    #     'Order successful',
+    #     'Your order has been successful!',
+    #     'np32978@gmail.com',
+    #     ['190630107139@mbit.edu.in'],
+    #     fail_silently=False,
+    # )
+   
 
     return Response(res_data)

@@ -1,0 +1,7 @@
+job_name: 'checkly'
+  scrape_interval: 30s
+  metrics_path: 'https://api.checklyhq.com/accounts/560ffdfd-960f-4b06-bb32-3601e430efd4/prometheus/metrics'
+  bearer_token: 'eYPdo3zZKRRttW0aSbNqDwV9'
+  scheme: https
+  static_configs:
+  - targets: ['backend-neel139.vercel.app']
