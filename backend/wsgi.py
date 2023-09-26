@@ -15,5 +15,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
 try:
     application = get_wsgi_application()
+    app = application
 except Exception as e:
         print("Unexpected error:",e)
